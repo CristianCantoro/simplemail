@@ -157,9 +157,9 @@ def inviamail(app=None, mailfrom='', mailto=None, files=None, cc=None, bcc=None,
     addresses = list(set(mailto))
 
     #print message.as_string()
-    msg = """ RIEPILOGO EMAIL
-    L'email verrà inviata ai seguenti indirizzi %s
-    in allegato il file: %s
+    msg = """ EMAIL SUMMARY
+    Email will be sent to: %s
+    file attached: %s
 """ %(', '.join(addresses), ', '.join(files))
 
     logger.info(msg)
