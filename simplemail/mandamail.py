@@ -128,8 +128,12 @@ def inviamail(app=None, mailfrom='', mailto=None, files=None, cc=None, bcc=None,
     mailto = list(mailto)
     cc = list(cc)
     bcc = list(bcc)
-           
-    message = MIMEMultipart('alternative')
+
+    # Bug that I forgot to fix from 6 years ago:
+    # https://forum.mozillaitalia.org/index.php?topic=49084.0
+    # The primary MIME type of the message must be 'mixed' and
+    # not 'alternative'
+    message = MIMEMultipart('mixed')
     message['From'] = mailfrom
     message['To'] = COMMASPACE.join(mailto)
     message['Date'] = formatdate(localtime=True)
