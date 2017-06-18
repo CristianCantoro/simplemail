@@ -6,6 +6,7 @@ import setproctitle
 from simplemail.mandamail import inviamail
 
 # ***** CONFIG ******
+APPNAME = 'mysimplemail'
 MAILFROM = 'me@example.com'
 MAILTO = ['you@example.com']
 SERVER = 'smtp.server.com:port'
@@ -14,7 +15,7 @@ PASSWORD = 'mypassword'
 
 # ***** END CONFIG ******
 
-setproctitle.setproctitle('simplemail')
+setproctitle.setproctitle(APPNAME)
 
 # ***** logging module objects and definition *****
 
