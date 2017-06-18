@@ -71,14 +71,14 @@ console.setFormatter(formatter)
 rootlogger.addHandler(console)
 
 parser = argparse.ArgumentParser(description='Send the analysis result')
-parser.add_argument('-f', dest='files', metavar='file', type=str, nargs='+', 
+parser.add_argument('-f', dest='files', metavar='file', type=str, nargs='+',
                     help='files to send')
 parser.add_argument('-m', dest='message', type=str, help='message to send',
                     default='I am simplemail, I am sendind this e-mail')
 parser.add_argument('-s', dest='subject', type=str, help='subject of the mail',
                     default='--\nMail sent with simplemail')
 
-###FIXME 
+###FIXME
 # parser.add_argument('-t', dest='to', type=str, help='destination of the mail',
 #                     default='something')
 # parser.add_argument('--format', type=str, help='format of the mail',
@@ -89,9 +89,9 @@ args = parser.parse_args()
 
 inviamail(app=APPNAME,
           mailfrom=MAILFROM,
-          mailto=MAILTO, 
+          mailto=MAILTO,
           files=args.files,
-          cc=None, 
+          cc=None,
           bcc=None,
           server = SERVER,
           auth_required=True,
@@ -101,7 +101,7 @@ inviamail(app=APPNAME,
           mail_format='plaintext',
           html_text=None,
           plaintext_text=args.message,
-          blacklist=None, 
-          passwd_force_ask=False, 
+          blacklist=None,
+          passwd_force_ask=False,
           dry_send=False
           )
