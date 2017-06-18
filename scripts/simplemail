@@ -2,6 +2,7 @@
 
 import argparse
 import logging
+import setproctitle
 from simplemail.mandamail import inviamail
 
 # ***** CONFIG ******
@@ -13,10 +14,11 @@ PASSWORD = 'mypassword'
 
 # ***** END CONFIG ******
 
+setproctitle.setproctitle('simplemail')
 
 # ***** logging module objects and definition *****
 
-LOGFORMAT_STDOUT =
+LOGFORMAT_STDOUT = \
 { logging.DEBUG:
     '%(module)s:%(funcName)s:%(lineno)s - %(levelname)-8s: %(message)s',
   logging.INFO: '%(levelname)-8s: %(message)s',
@@ -25,7 +27,7 @@ LOGFORMAT_STDOUT =
   logging.CRITICAL: '%(levelname)-8s: %(message)s'
 }
 
-LOGFORMAT_FILE =
+LOGFORMAT_FILE = \
 { logging.DEBUG:
     "%(module)s:%(funcName)s:%(lineno)s - ***%(levelname)s***: %(message)s",
   logging.INFO:
