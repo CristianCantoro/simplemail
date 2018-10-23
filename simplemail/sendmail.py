@@ -70,10 +70,23 @@ ATTACH = {
 'both': attach_both
 }
 
-def inviamail(app=None, mailfrom='', mailto=None, files=None, cc=None, bcc=None, \
-          server = None, auth_required=False, username='', password=None, \
-          subject='', mail_format=None, html_text='', plaintext_text='', \
-          blacklist=None, passwd_force_ask=False, dry_send=False):
+def send(app=None,
+         mailfrom='',
+         mailto=None,
+         files=None,
+         cc=None,
+         bcc=None,
+         server=None,
+         auth_required=False,
+         username='',
+         password=None,
+         subject='',
+         mail_format=None,
+         html_text='',
+         plaintext_text='',
+         blacklist=None,
+         passwd_force_ask=False,
+         dry_run=False):
 
     if mailto is None:
       mailto=[]
@@ -100,19 +113,19 @@ def inviamail(app=None, mailfrom='', mailto=None, files=None, cc=None, bcc=None,
     assert isinstance(files, list)
     
     logger.debug("cc: %s" %cc)
-    assert isinstance(cc,list)
+    assert isinstance(cc, list)
     
     logger.debug("bcc: %s" %bcc)
     assert isinstance(bcc,list)
 
     logger.debug("auth_required: %s" %auth_required)
-    assert isinstance(auth_required,bool)
+    assert isinstance(auth_required, bool)
 
     logger.debug("passwd_force_ask: %s" %passwd_force_ask)
-    assert isinstance(passwd_force_ask,bool)
+    assert isinstance(passwd_force_ask, bool)
 
-    logger.debug("dry_send: %s" %dry_send)
-    assert isinstance(dry_send,bool)
+    logger.debug("dry_run: %s" %dry_run)
+    assert isinstance(dry_run, bool)
     
     logger.debug("mail_format: %s" %mail_format)
     assert mail_format in AVAILABLE_FORMATS
@@ -191,7 +204,7 @@ def inviamail(app=None, mailfrom='', mailto=None, files=None, cc=None, bcc=None,
 
         logger.info("Login avvenuto correttamente")
       
-    if not dry_send:
+    if not dry_run:
         smtp.sendmail(mailfrom, addresses, message.as_string())
 
     smtp.close()
