@@ -74,9 +74,15 @@ def inviamail(app=None, mailfrom='', mailto=None, files=None, cc=None, bcc=None,
           server = None, auth_required=False, username='', password=None, \
           subject='', mail_format=None, html_text='', plaintext_text='', \
           blacklist=None, passwd_force_ask=False, dry_send=False):
-    
+
     if mailto is None:
       mailto=[]
+    elif ',' in mailto:
+      mailto=mailto.split(',')
+    elif isinstance(mailto, str):
+      mailto=[mailto]
+    else:
+      raise ValueError('Wrong mailto recipient: {}'.format(mailto))
       
     if files is None:
       files=[]
