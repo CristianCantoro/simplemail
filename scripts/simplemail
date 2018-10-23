@@ -8,7 +8,6 @@ from simplemail.mandamail import inviamail
 # ***** CONFIG ******
 APPNAME = 'mysimplemail'
 MAILFROM = 'me@example.com'
-MAILTO = ['you@example.com']
 SERVER = 'smtp.server.com:port'
 USERNAME = 'myusername'
 PASSWORD = 'mypassword'
@@ -78,9 +77,9 @@ parser.add_argument('-m', dest='message', type=str, help='message to send',
 parser.add_argument('-s', dest='subject', type=str, help='subject of the mail',
                     default='--\nMail sent with simplemail')
 
-###FIXME
-# parser.add_argument('-t', dest='to', type=str, help='destination of the mail',
-#                     default='something')
+parser.add_argument('-t', dest='to', type=str, help='destination of the mail',
+                    default='something')
+### FIXME
 # parser.add_argument('--format', type=str, help='format of the mail',
 #                     default='plaintext')
 
@@ -89,7 +88,7 @@ args = parser.parse_args()
 
 inviamail(app=APPNAME,
           mailfrom=MAILFROM,
-          mailto=MAILTO,
+          mailto=args.to,
           files=args.files,
           cc=None,
           bcc=None,
